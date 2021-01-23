@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>webView</title>
+
+  <style type="text/css">
+    body {
+      background: #ccc;
+    }
+
+    button {
+      display: block;
+      margin: 50px auto;
+      padding: 10px;
+      border-radius: 10px;
+      border: 0;
+      border: 1px solid #333;
+    }
+
+    input {
+      padding: 10px;
+      border-radius: 10px;
+      border: 0;
+    }
+
+    h1 {
+      text-align: center;
+      margin: 50px 0;
+    }
+
+    .input-box {
+      width: 400px;
+      height: 50px;
+      margin: 0 auto;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>WebView</h1>
+  <div class="input-box">
+    <span>输入要传递的值：</span>
+    <input type="text" id="input" value="www.baidu.com">
+  </div>
+  <div>
+    <button type="button" id="btn">点击传递url</button>
+  </div>
+
+  <script type="text/javascript">
+
+    function callTest() {
+      var inputEle = document.getElementById("input");
+      var str = inputEle.value;
+      if (window.launcher) {
+        // JS 调用 Android 的方法
+        launcher.callAndroid(str);
+      } else {
+        alert("launcher not found!");
+      }
+    }
+
+    function main() {
+      // window.launcher = {
+      //   callAndroid: function(str) {
+      //     console.log(str)
+      //   }
+      // };
+      var btnEle = document.getElementById("btn");
+      btnEle.addEventListener("click", callTest);
+    }
+
+    main();
+
+  </script>
+</body>
+
+</html>
